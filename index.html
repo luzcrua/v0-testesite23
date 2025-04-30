@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Gallery</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #1e1e2f;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 {
+            margin: 20px 0;
+            font-size: 2.5rem;
+            color: #ff6f61;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            width: 90%;
+            max-width: 1200px;
+        }
+
+        .image-card {
+            background: #2a2a3b;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .image-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+        }
+
+        .image-card img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .image-card .actions {
+            padding: 10px;
+            text-align: center;
+        }
+
+        .download-btn {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #ff6f61;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .download-btn:hover {
+            background-color: #e65c50;
+        }
+
+        .fullscreen-btn {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #4caf50;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .fullscreen-btn:hover {
+            background-color: #3e8e41;
+        }
+
+        /* Adjustments for responsiveness */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+                text-align: center;
+            }
+
+            .gallery {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .image-card {
+                margin: 0 auto;
+                width: 90%;
+            }
+
+            .image-card img {
+                max-width: 100%;
+                height: auto;
+            }
+
+            .download-btn, .fullscreen-btn {
+                width: 100%;
+                padding: 12px;
+                font-size: 1rem;
+            }
+        }
+    </style>
+    <script>
+        function viewFullscreen(imageUrl) {
+            const fullscreenOverlay = document.createElement('div');
+            fullscreenOverlay.style.position = 'fixed';
+            fullscreenOverlay.style.top = '0';
+            fullscreenOverlay.style.left = '0';
+            fullscreenOverlay.style.width = '100%';
+            fullscreenOverlay.style.height = '100%';
+            fullscreenOverlay.style.backgroundColor = 'rgba(0, 0, 0, 0.9)';
+            fullscreenOverlay.style.display = 'flex';
+            fullscreenOverlay.style.justifyContent = 'center';
+            fullscreenOverlay.style.alignItems = 'center';
+            fullscreenOverlay.style.zIndex = '1000';
+
+            const img = document.createElement('img');
+            img.src = imageUrl;
+            img.style.maxWidth = '90%';
+            img.style.maxHeight = '90%';
+            img.style.borderRadius = '10px';
+
+            fullscreenOverlay.appendChild(img);
+
+            fullscreenOverlay.addEventListener('click', () => {
+                document.body.removeChild(fullscreenOverlay);
+            });
+
+            document.body.appendChild(fullscreenOverlay);
+        }
+    </script>
+</head>
+<body>
+    <h1>Image Gallery</h1>
+    <div class="gallery">
+        <div class="image-card">
+            <img src="https://i.ibb.co/rG20pZ2Z/1.png" alt="1">
+            <div class="actions">
+                <a class="download-btn" href="https://i.ibb.co/rG20pZ2Z/1.png" download>Download</a>
+                <button class="fullscreen-btn" onclick="viewFullscreen('https://i.ibb.co/rG20pZ2Z/1.png')">View Fullscreen</button>
+            </div>
+        </div>
+        <div class="image-card">
+            <img src="https://i.ibb.co/7xG0Wt43/2.png" alt="2">
+            <div class="actions">
+                <a class="download-btn" href="https://i.ibb.co/7xG0Wt43/2.png" download>Download</a>
+                <button class="fullscreen-btn" onclick="viewFullscreen('https://i.ibb.co/7xG0Wt43/2.png')">View Fullscreen</button>
+            </div>
+        </div>
+        <div class="image-card">
+            <img src="https://i.ibb.co/NdsNYV8k/3.png" alt="3">
+            <div class="actions">
+                <a class="download-btn" href="https://i.ibb.co/NdsNYV8k/3.png" download>Download</a>
+                <button class="fullscreen-btn" onclick="viewFullscreen('https://i.ibb.co/NdsNYV8k/3.png')">View Fullscreen</button>
+            </div>
+        </div>
+        <div class="image-card">
+            <img src="https://i.ibb.co/KZbKc6G/4.png" alt="4">
+            <div class="actions">
+                <a class="download-btn" href="https://i.ibb.co/KZbKc6G/4.png" download>Download</a>
+                <button class="fullscreen-btn" onclick="viewFullscreen('https://i.ibb.co/KZbKc6G/4.png')">View Fullscreen</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
